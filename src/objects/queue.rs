@@ -1,11 +1,18 @@
 use super::{message::Message, error::ServiceBusError};
 
 
-struct Queue {
+pub struct Queue {
     queue: Vec<Message>
 }
 
 impl Queue {
+
+    pub fn new() -> Queue {
+        Queue{
+            queue: Vec::new()
+        }
+    }
+
     pub fn push_message(&mut self, msg: Message) -> Result<bool, ServiceBusError>{
         
         match self.queue.len() as isize {
