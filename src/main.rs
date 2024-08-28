@@ -1,4 +1,4 @@
-use mini_serivce_bus_rs::entities::{client::Client, message::Message, queue::Queue};
+use mini_serivce_bus_rs::{entities::{client::Client, message::Message, queue::Queue}, handler::network_manager::routes_queue};
 use tokio::net::TcpListener;
 
 use axum::{routing::get, Router};
@@ -24,7 +24,7 @@ fn main() {
 
 #[tokio::main]
 async fn main() {
-    let router = Router::new().route("/", get(|| async { "Hello, World!" }));
+    let router = routes_queue();
     let addr = TcpListener::bind("0.0.0.0:8080").await.unwrap();
 
     println!("->> Listening on {:?}\n", addr);

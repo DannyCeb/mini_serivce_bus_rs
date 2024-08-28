@@ -3,16 +3,17 @@ use std::{ fmt::Display, rc::Rc};
 
 use datetime::{Instant, LocalDateTime};
 
+
 use super::client::Client;
 
 pub struct MetaData{
-    date_time: LocalDateTime,
+    date_time: String,
     client: Rc<Client>
 }
 
 impl MetaData {
     pub fn new(client: Rc<Client>) -> MetaData {
-        let date_time = LocalDateTime::from_instant(Instant::now());
+        let date_time = format!("{:?}",LocalDateTime::from_instant(Instant::now()));
         MetaData {
             date_time,
             client
