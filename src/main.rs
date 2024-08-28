@@ -1,7 +1,9 @@
-use std::rc::Rc;
+use mini_serivce_bus_rs::entities::{client::Client, message::Message, queue::Queue};
+use tokio::net::TcpListener;
 
-use mini_serivce_bus_rs::objects::{client::Client, message::Message, queue::Queue};
+use axum::{routing::get, Router};
 
+/* 
 fn main() {
     println!("Hello, world!");
 
@@ -18,4 +20,17 @@ fn main() {
 
     print!("{}",msg_recuperado);
 
+}*/
+
+#[tokio::main]
+async fn main() {
+    let router = Router::new().route("/", get(|| async { "Hello, World!" }));
+    let addr = TcpListener::bind("0.0.0.0:8080").await.unwrap();
+
+    println!("->> Listening on {:?}\n", addr);
+
+    axum::serve(addr,router).await.unwrap();
+
+    //Ok(())
 }
+

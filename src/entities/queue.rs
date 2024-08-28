@@ -1,4 +1,6 @@
-use super::{message::Message, error::ServiceBusError};
+use crate::utils::error::ServiceBusError;
+
+use super::{message::Message};
 
 
 pub struct Queue {
